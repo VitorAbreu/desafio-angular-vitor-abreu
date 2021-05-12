@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { HeroiModel } from './../model/heroi.model';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-card',
@@ -9,7 +10,11 @@ export class CardComponent implements OnInit {
 
   constructor() { }
 
+  @Input() heroi?: HeroiModel;
+
   ngOnInit(): void {
+    console.log(this.heroi.foto);
+    
   }
 
 }

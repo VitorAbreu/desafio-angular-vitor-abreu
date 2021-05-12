@@ -1,13 +1,11 @@
-<div class="row">
-    <div class="col s12 m7">
-        <div class="card">
-            <div class="card-image">
-                <img src="images/sample-1.jpg">
-                <span class="card-title">Nome</span>
-            </div>
-            <div class="card-action">
-                <a href="#">Confira</a>
-            </div>
-        </div>
+<div class="col s12 m3">
+  <div class="card small black">
+    <div class="card-image">
+      <img [src]="heroi.foto">
     </div>
+    <span class="card-title white-text">{{ heroi.nome | uppercase }}</span>
+    <div class="card-action">
+      <a class="link white-text" href="#">CONHEÇA</a>
+    </div>
+  </div>
 </div>

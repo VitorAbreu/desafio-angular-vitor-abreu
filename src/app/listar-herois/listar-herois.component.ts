@@ -1,3 +1,4 @@
+import { HeroiModel } from './../shared/model/heroi.model';
 import { ConsultaMarvelService } from './../shared/consulta-marvel.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -8,18 +9,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListarHeroisComponent implements OnInit {
 
-  herois = [];
+  retornoApi: any[] = [];
+  herois: HeroiModel[] = [];
   constructor(private consultaMarvelService: ConsultaMarvelService) { }
 
   ngOnInit(): void {
-    console.log('to chamando');
-
     this.consultaMarvelService.consultaHerois().subscribe(herois => {
-      this.herois = herois;
-      console.log(this.herois);
+      this.retornoApi = herois;
+      this.trataRetorno();
     }, err => {
       console.log(err);
     });
   }
 
+  trataRetorno(): void {
+    this.retornoApi.forEach((heroi: any) => {
+      this.herois.push(new HeroiModel(heroi.name, (heroi.thumbnail.path + '.' + heroi.thumbnail.extension), heroi.description));
+    });
+    console.log(this.herois);
+  }
 }
