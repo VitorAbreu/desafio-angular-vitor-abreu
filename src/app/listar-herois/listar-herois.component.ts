@@ -16,10 +16,10 @@ export class ListarHeroisComponent implements OnInit {
 
     this.consultaMarvelService.consultaHerois().subscribe(herois => {
       this.herois = herois;
+      console.log(this.herois);
     }, err => {
       console.log(err);
     });
-    console.log(this.herois);
   }
 
 }
