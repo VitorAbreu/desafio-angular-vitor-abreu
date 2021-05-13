@@ -4,7 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { ListarHeroisComponent } from './listar-herois/listar-herois.component';
 
 const routes: Routes = [
-  { path: '',   redirectTo: '/lista/1', pathMatch: 'full' },
+  { path: '',   redirectTo: '/lista/0', pathMatch: 'full' },
   { path: 'lista/:id', component: ListarHeroisComponent },
   { path: 'detalhe/:id', component: DetalheHeroiComponent },
 ];

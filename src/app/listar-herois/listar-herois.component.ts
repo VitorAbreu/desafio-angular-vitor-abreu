@@ -2,7 +2,7 @@ import { HeroiModel } from './../shared/model/heroi.model';
 import { ConsultaMarvelService } from './../shared/consulta-marvel.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-listar-herois',
@@ -15,21 +15,32 @@ export class ListarHeroisComponent implements OnInit, OnDestroy {
   herois: HeroiModel[] = [];
   erro: boolean;
   subscriptionApi: Subscription;
+  subscriptionRoute: Subscription;
+  id: number;
+  anterior: number;
+  proximo: number;
 
   constructor(
     private consultaMarvelService: ConsultaMarvelService,
-    private activetedRoute: ActivatedRoute
+    private activetedRoute: ActivatedRoute,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
-    this.activetedRoute.params.subscribe((parametro: any) => {
+    this.subscriptionRoute = this.activetedRoute.params.subscribe((parametro: any) => {
+      this.id = parametro.id;
       this.herois = [];
-      this.consultaHerois(parametro.id);
+      this.consultaHerois(this.id);
+      let aux = Number(this.id);
+      this.anterior = (aux - 1);
+      aux = Number(this.id);
+      this.proximo = (1 + aux);
     });
   }
 
   ngOnDestroy(): void {
     this.subscriptionApi.unsubscribe();
+    this.subscriptionRoute.unsubscribe();
   }
 
   trataRetorno(): void {
@@ -44,6 +55,14 @@ export class ListarHeroisComponent implements OnInit, OnDestroy {
     });
     console.log(this.herois);
   }
+
+  // proximaPagina(): void {
+  //   this.router.navigate(['lista', (Number(this.id) + 1)]);
+  // }
+
+  // paginaAnterior(): void {
+  //   this.router.navigate(['lista', (Number(this.id) - 1)]);
+  // }
 
   consultaHerois(pagina?: number): void {
     this.subscriptionApi = this.consultaMarvelService.consultaHerois(pagina).subscribe(herois => {
