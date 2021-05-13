@@ -1,10 +1,12 @@
+import { DetalheHeroiComponent } from './detalhe-heroi/detalhe-heroi.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ListarHeroisComponent } from './listar-herois/listar-herois.component';
 
 const routes: Routes = [
-  { path: '',   redirectTo: '/lista', pathMatch: 'full' },
-  { path: 'lista', component: ListarHeroisComponent },
+  { path: '',   redirectTo: '/lista/1', pathMatch: 'full' },
+  { path: 'lista/:id', component: ListarHeroisComponent },
+  { path: 'detalhe/:id', component: DetalheHeroiComponent },
 ];
 
 @NgModule({

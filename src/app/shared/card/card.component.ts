@@ -1,5 +1,6 @@
 import { HeroiModel } from './../model/heroi.model';
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-card',
@@ -8,13 +9,15 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class CardComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   @Input() heroi?: HeroiModel;
 
   ngOnInit(): void {
-    console.log(this.heroi.foto);
-    
+  }
+
+  detalhesHeroi(id: string): void {
+    this.router.navigate([`detalhe/${id}`]);
   }
 
 }

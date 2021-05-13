@@ -17,9 +17,9 @@ export class ConsultaMarvelService {
 
   constructor(private httpClient: HttpClient) { }
 
-  consultaHerois(): Observable<any> {
-    console.log(this.md5Hash);
-    return this.httpClient.get(`${this.baseURL}ts=${this.timeStamp}&apikey=${this.publicKey}&hash=${this.md5Hash}`)
+  consultaHerois(pagina?: number): Observable<any> {
+    pagina > 0 ? pagina = (pagina * 20) - 1 : pagina = 0;
+    return this.httpClient.get(`${this.baseURL}ts=${this.timeStamp}&apikey=${this.publicKey}&hash=${this.md5Hash}&offset=${pagina.toString()}`)
     .pipe(map((data: any) => data.data.results));
   }
 }

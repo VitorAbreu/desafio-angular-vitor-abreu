@@ -1,5 +1,30 @@
-<div class="row" *ngIf="herois.length > 0">
-    <div *ngFor="let heroi of herois">
-        <app-card [heroi]="heroi"></app-card>
-    </div>
+<h2 class="center">LISTA DE HEROIS</h2>
+<div class="row" *ngIf="herois.length > 0; else aguarde">
+  <div *ngFor="let heroi of herois">
+    <app-card [heroi]="heroi"></app-card>
+  </div>
+</div>
+<ng-template #aguarde>
+    <h3>AGUARDE...</h3>
+</ng-template>
+<div #erro *ngIf="erro">
+  <p>Desculpe, não foi possivel estabelecer conexão com a API</p>
+</div>
+<div class="paginacao center" *ngIf="herois.length > 0">
+  <ul class="pagination">
+    <li [ngClass]="{'disabled': true }"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+    <li class="waves-effect" routerLinkActive="active" routerLinkActive="active" routerLinkActive="active"
+      routerLinkActive="active" routerLinkActive="active"><a [routerLink]="['/lista', 0]">1</a></li>
+    <li class="waves-effect" routerLinkActive="active" routerLinkActive="active" routerLinkActive="active"
+      routerLinkActive="active" routerLinkActive="active"><a [routerLink]="['/lista', 1]">2</a></li>
+    <li class="waves-effect" routerLinkActive="active" routerLinkActive="active" routerLinkActive="active"
+      routerLinkActive="active" routerLinkActive="active"><a [routerLink]="['/lista', 2]">3</a></li>
+    <li class="waves-effect" routerLinkActive="active" routerLinkActive="active" routerLinkActive="active"
+      routerLinkActive="active" routerLinkActive="active"><a [routerLink]="['/lista', 3]">4</a></li>
+    <li class="waves-effect" routerLinkActive="active" routerLinkActive="active" routerLinkActive="active"
+      routerLinkActive="active" routerLinkActive="active"><a [routerLink]="['/lista', 4]">5</a></li>
+    <li class="waves-effect" routerLinkActive="active" routerLinkActive="active" routerLinkActive="active"
+      routerLinkActive="active" routerLinkActive="active"><a href="#!"><i class="material-icons">chevron_right</i></a>
+    </li>
+  </ul>
 </div>
