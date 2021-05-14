@@ -6,7 +6,7 @@
     </div>
   </div>
 </nav>
-<div *ngIf="heroi; else aguarde">
+<div *ngIf="heroi; else aguarde" [@heroi]>
   <div class="row">
     <div class="col s12 m4">
       <img [src]="heroi.foto">

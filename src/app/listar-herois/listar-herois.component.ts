@@ -11,12 +11,6 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
   styleUrls: ['./listar-herois.component.scss'],
   animations: [
     trigger('cards', [
-      state('carregando', style({
-        opacity: 0
-      })),
-      state('carregado', style({
-        opacity: 1
-      })),
       // transition('carregando => carregado', animate('2s ease-in'))
       transition(
         ':enter',

@@ -2,11 +2,24 @@ import { HQModel } from './../shared/model/hq.model';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ConsultaMarvelService } from '../shared/consulta-marvel.service';
+import { trigger, state, style, transition, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-hq-detalhes',
   templateUrl: './hq-detalhes.component.html',
-  styleUrls: ['./hq-detalhes.component.scss']
+  styleUrls: ['./hq-detalhes.component.scss'],
+  animations: [
+    trigger('hq', [
+      transition(
+        ':enter',
+        [
+          style({ opacity: 0}),
+          animate('2s ease-in',
+            style({ opacity: 1 }))
+        ]
+      )
+    ])
+  ]
 })
 export class HqDetalhesComponent implements OnInit {
   idHeroi: any;
