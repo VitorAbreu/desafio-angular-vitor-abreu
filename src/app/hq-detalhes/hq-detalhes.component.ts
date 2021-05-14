@@ -36,12 +36,14 @@ export class HqDetalhesComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    // recebe parametros da url via snapshot
     this.idHeroi = this.activetedRoute.snapshot.params.id;
+    //chama a service e trás as 20 HQs
     this.subscriptionApi = this.consultaMarvelService.consultaHq(this.idHeroi).subscribe((dados) => {
       this.retornoApi = dados;
 
       this.trataRetorno();
-      // this.hqMaisCara = dados.find(element => Math.max(element.prices[0]));
+      
       this.erroApi = false;
     }, err => {
       this.erroApi = true;
@@ -53,6 +55,7 @@ export class HqDetalhesComponent implements OnInit {
   }
 
   trataRetorno(): void {
+    //cria um array de objetos para facilitar o manuseio
     this.retornoApi.forEach((hq: any) => {
       this.hqs.push(
         new HQModel(
@@ -66,7 +69,9 @@ export class HqDetalhesComponent implements OnInit {
   }
 
   pegaHQMaisCara(): void {
+    //filtra o maior valor entre as HQs
     const valor = Math.max.apply(Math, this.hqs.map((hq) => hq.price));
+    //filtra o primeiro objeto que possui o maior valor
     this.hqMaisCara = this.hqs.find(e => e.price = valor);
   }
 

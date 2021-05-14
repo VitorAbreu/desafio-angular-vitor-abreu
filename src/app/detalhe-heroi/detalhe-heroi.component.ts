@@ -11,7 +11,6 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
   styleUrls: ['./detalhe-heroi.component.scss'],
   animations: [
     trigger('heroi', [
-      // transition('carregando => carregado', animate('2s ease-in'))
       transition(
         ':enter',
         [
@@ -48,7 +47,9 @@ export class DetalheHeroiComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
+    // recebe parametros da url
     this.idHeroi = this.activetedRoute.snapshot.params.id;
+    //chama a service e trás o heroi
     this.subscriptionApi = this.consultaMarvelService.detalhesHeroi(this.idHeroi).subscribe(heroi => {
       this.heroi = new HeroiModel(
         heroi[0].name,
@@ -63,10 +64,12 @@ export class DetalheHeroiComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    //encerra o subscribe para evitar consumo de cache
     this.subscriptionApi.unsubscribe();
   }
 
   conferirHQ(): void {
+    //redireciona para proxima tela enviando o id
     this.route.navigate(['/hqValiosa', this.idHeroi]);
   }
 }

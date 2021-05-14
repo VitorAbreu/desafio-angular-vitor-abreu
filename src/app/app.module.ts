@@ -8,6 +8,7 @@ import { ListarHeroisComponent } from './listar-herois/listar-herois.component';
 import { SharedModule } from './shared/shared.module';
 import { DetalheHeroiComponent } from './detalhe-heroi/detalhe-heroi.component';
 import { HqDetalhesComponent } from './hq-detalhes/hq-detalhes.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { HqDetalhesComponent } from './hq-detalhes/hq-detalhes.component';
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    SharedModule
+    SharedModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

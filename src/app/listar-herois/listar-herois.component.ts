@@ -11,7 +11,6 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
   styleUrls: ['./listar-herois.component.scss'],
   animations: [
     trigger('cards', [
-      // transition('carregando => carregado', animate('2s ease-in'))
       transition(
         ':enter',
         [
@@ -41,10 +40,12 @@ export class ListarHeroisComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
+    // recebe parametros da url via subscribe por conta da paginação
     this.subscriptionRoute = this.activetedRoute.params.subscribe((parametro: any) => {
       this.id = parametro.id;
       this.herois = [];
       this.consultaHerois(this.id);
+      //variaveis auxiliares para paginação
       let aux = Number(this.id);
       this.anterior = (aux - 1);
       aux = Number(this.id);
@@ -53,11 +54,13 @@ export class ListarHeroisComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    //encerra os subscribes para evitar consumo de cache
     this.subscriptionApi.unsubscribe();
     this.subscriptionRoute.unsubscribe();
   }
 
   trataRetorno(): void {
+    //cria um array de objetos para facilitar o manuseio
     this.retornoApi.forEach((heroi: any) => {
       this.herois.push(
         new HeroiModel(
@@ -70,6 +73,7 @@ export class ListarHeroisComponent implements OnInit, OnDestroy {
   }
 
   consultaHerois(pagina?: number): void {
+    //chama a api e retorna um array de herois
     this.subscriptionApi = this.consultaMarvelService.consultaHerois(pagina).subscribe(herois => {
       this.retornoApi = herois;
       this.trataRetorno();

@@ -1,4 +1,6 @@
+import { HttpClientModule } from '@angular/common/http';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterModule } from '@angular/router';
 
 import { HqDetalhesComponent } from './hq-detalhes.component';
 
@@ -8,7 +10,11 @@ describe('HqDetalhesComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ HqDetalhesComponent ]
+      declarations: [ HqDetalhesComponent ],
+      imports: [
+        RouterModule.forRoot([]),
+        HttpClientModule
+      ]
     })
     .compileComponents();
   }));
