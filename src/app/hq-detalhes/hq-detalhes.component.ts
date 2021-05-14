@@ -25,9 +25,7 @@ export class HqDetalhesComponent implements OnInit {
   ngOnInit(): void {
     this.idHeroi = this.activetedRoute.snapshot.params.id;
     this.subscriptionApi = this.consultaMarvelService.consultaHq(this.idHeroi).subscribe((dados) => {
-      console.log(dados);
       this.retornoApi = dados;
-      console.log(dados[0].prices.shift().price);
 
       this.trataRetorno();
       // this.hqMaisCara = dados.find(element => Math.max(element.prices[0]));
@@ -51,14 +49,12 @@ export class HqDetalhesComponent implements OnInit {
         )
       );
     });
-    console.log(this.hqs);
     this.pegaHQMaisCara();
   }
 
   pegaHQMaisCara(): void {
     const valor = Math.max.apply(Math, this.hqs.map((hq) => hq.price));
     this.hqMaisCara = this.hqs.find(e => e.price = valor);
-    console.log(this.hqMaisCara);
   }
 
 }

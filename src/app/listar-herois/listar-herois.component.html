@@ -1,8 +1,8 @@
 <div class="padding">
   <h2 class="center">LISTA DE HEROIS</h2>
   <div class="row" *ngIf="herois.length > 0; else aguarde">
-    <div *ngFor="let heroi of herois">
-      <app-card [heroi]="heroi"></app-card>
+    <div *ngFor="let heroi of herois" >
+      <app-card [@cards] [heroi]="heroi"></app-card>
     </div>
   </div>
   <ng-template #aguarde>

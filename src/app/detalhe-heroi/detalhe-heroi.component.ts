@@ -31,7 +31,6 @@ export class DetalheHeroiComponent implements OnInit, OnDestroy {
         heroi[0].description?.substring(0, 330) + (heroi[0].description?.length > 330 ? '...' : ''),
         heroi[0].id
       );
-      console.log(this.heroi);
       this.erroApi = false;
     }, err => {
       this.erroApi = true;

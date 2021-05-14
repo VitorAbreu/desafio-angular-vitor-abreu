@@ -3,11 +3,31 @@ import { ConsultaMarvelService } from './../shared/consulta-marvel.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
+import { animate, state, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'app-listar-herois',
   templateUrl: './listar-herois.component.html',
-  styleUrls: ['./listar-herois.component.scss']
+  styleUrls: ['./listar-herois.component.scss'],
+  animations: [
+    trigger('cards', [
+      state('carregando', style({
+        opacity: 0
+      })),
+      state('carregado', style({
+        opacity: 1
+      })),
+      // transition('carregando => carregado', animate('2s ease-in'))
+      transition(
+        ':enter',
+        [
+          style({ opacity: 0 }),
+          animate('2s ease-in',
+            style({ opacity: 1 }))
+        ]
+      )
+    ])
+  ]
 })
 export class ListarHeroisComponent implements OnInit, OnDestroy {
 
@@ -19,6 +39,7 @@ export class ListarHeroisComponent implements OnInit, OnDestroy {
   id: number;
   anterior: number;
   proximo: number;
+  stateCard = 'carregando';
 
   constructor(
     private consultaMarvelService: ConsultaMarvelService,
@@ -59,6 +80,7 @@ export class ListarHeroisComponent implements OnInit, OnDestroy {
       this.retornoApi = herois;
       this.trataRetorno();
       this.erro = false;
+      this.stateCard = 'carregado';
     }, err => {
       this.erro = true;
     });
