@@ -1,9 +1,16 @@
 img {
     width: 100%;
 }
+.nav-wrapper > .col.s12 {
+    margin-left: 1rem;
+}
 
 h2, h3 {
     font-family: 'marvel';
+}
+
+h3 {
+    font-size: 2rem;
 }
 
 main {
@@ -18,9 +25,11 @@ main {
 a {
     margin-bottom: 3rem;
 }
-h3 {
-    font-size: 2rem;
+
+.breadcrumb {
+    cursor: pointer;
 }
-.nav-wrapper > .col.s12 {
-    margin-left: 1rem;
+
+.breadcrumb:last-child {
+    cursor: default;
 }

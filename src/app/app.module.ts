@@ -6,13 +6,15 @@ import { AppComponent } from './app.component';
 import { ListarHeroisComponent } from './listar-herois/listar-herois.component';
 import { SharedModule } from './shared/shared.module';
 import { DetalheHeroiComponent } from './detalhe-heroi/detalhe-heroi.component';
+import { HqDetalhesComponent } from './hq-detalhes/hq-detalhes.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     ListarHeroisComponent,
-    DetalheHeroiComponent
+    DetalheHeroiComponent,
+    HqDetalhesComponent
   ],
   imports: [
     BrowserModule,

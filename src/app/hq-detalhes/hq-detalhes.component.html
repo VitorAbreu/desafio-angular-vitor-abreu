@@ -1,0 +1,35 @@
+<nav>
+    <div class="nav-wrapper black">
+      <div class="col s12">
+        <a [routerLink]="['/lista']" class="breadcrumb">Lista</a>
+        <a (click)='detalheHeroi()' class="breadcrumb">Detalhes</a>
+        <a class="breadcrumb">HQ</a>
+      </div>
+    </div>
+  </nav>
+  <div *ngIf="hqMaisCara; else aguarde">
+    <div class="row">
+      <div class="col s12 m4">
+        <img [src]="hqMaisCara.thumbnail">
+      </div>
+      <div class="col s12 m8 center">
+        <h2>{{ hqMaisCara.nome | uppercase }}</h2>
+        <div class="descricao" *ngIf="hqMaisCara.descricao != '' && hqMaisCara.descricao != 'undefined'; else noDescription">
+          <p>{{ hqMaisCara.descricao }}</p>
+        </div>
+        <p>Preço: ${{ hqMaisCara.price }}</p>
+        <ng-template #noDescription>
+          <p>Não há descrição disponível para está história</p>
+        </ng-template>
+        <a class="waves-effect center red waves-light btn-large" [routerLink]="['/lista']">Inicio</a>
+      </div>
+    </div>
+  </div>
+  <ng-template #aguarde>
+    <div class="center">
+      <h3>AGUARDE...</h3>
+    </div>
+  </ng-template>
+  <div *ngIf="erroApi">
+      <h3>Algo deu errado com a requisição da HQ :(</h3>
+  </div>

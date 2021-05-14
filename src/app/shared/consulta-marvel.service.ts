@@ -27,4 +27,9 @@ export class ConsultaMarvelService {
     return this.httpClient.get(`${this.baseURL}/${id}?ts=${this.timeStamp}&apikey=${this.publicKey}&hash=${this.md5Hash}`)
     .pipe(map((data: any) => data.data.results));
   }
+
+  consultaHq(id: number): Observable<any> {
+    return this.httpClient.get(`${this.baseURL}/${id}/comics?ts=${this.timeStamp}&apikey=${this.publicKey}&hash=${this.md5Hash}`)
+    .pipe(map((data: any) => data.data.results));
+  }
 }
